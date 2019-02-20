@@ -121,12 +121,21 @@ public class Solution {
         if (nums == null || nums.length < 2) {
             return false;
         }
-        HashSet<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (set.contains(nums[i])) {
+        int max = nums[0], min = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+            } else if (nums[i] < min) {
+                min = nums[i];
+            } else if (nums[i] == max || nums[i] == min){
                 return true;
+            } else {
+                for (int j = 0; j < i; j++) {
+                    if (nums[j] == nums[i]) {
+                        return true;
+                    }
+                }
             }
-            set.add(nums[i]);
         }
         return false;
     }

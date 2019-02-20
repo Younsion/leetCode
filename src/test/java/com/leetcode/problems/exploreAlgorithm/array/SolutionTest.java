@@ -65,4 +65,10 @@ public class SolutionTest extends Solution {
         rotate(nums, 2);
         Assert.assertTrue(Arrays.equals(nums, new int[]{5,6,1,2,3,4}));
     }
+
+    @Test
+    public void testContainsDuplicate() {
+        boolean b = containsDuplicate(new int[] { 1, 5, -2, -4, 0 });
+
+    }
 }
