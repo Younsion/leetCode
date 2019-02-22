@@ -1,5 +1,6 @@
 package com.leetcode.problems.exploreAlgorithm.array;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -139,4 +140,57 @@ public class Solution {
         }
         return false;
     }
+
+    /**
+     * 只出现一次的数字
+     *
+     * 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+     * 你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+     * @param nums
+     * @return
+     */
+    public int singleNumber(int[] nums) {
+        if (nums.length < 2) {
+            return nums[0];
+        }
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            result = result ^ nums[i];
+        }
+        return result;
+    }
+
+    /**
+     * 两个数组的交集 II
+     *
+     * 给定两个数组，编写一个函数来计算它们的交集。
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1 == null || nums1.length < 1) {
+            return nums1;
+        }
+        if (nums2 == null || nums2.length < 1) {
+            return nums2;
+        }
+        int length = 0;
+        int[] shorter = nums1.length < nums2.length ? nums1 : nums2;
+        int[] longer = shorter == nums1 ? nums2 : nums1;
+        boolean[] shorterHappen = new boolean[shorter.length];
+        int[] res = new int[shorter.length];
+        for (int i = 0; i < longer.length; i++) {
+            for (int j = 0; j < shorter.length; j++) {
+                if (longer[i] == shorter[j] && !shorterHappen[j]) {
+                    shorterHappen[j] = true;
+                    res[length] = shorter[j];
+                    length++;
+                    break;
+                }
+            }
+        }
+        return Arrays.copyOfRange(res, 0, length);
+    }
+
 }

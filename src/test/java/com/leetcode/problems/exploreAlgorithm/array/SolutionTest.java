@@ -69,6 +69,11 @@ public class SolutionTest extends Solution {
     @Test
     public void testContainsDuplicate() {
         boolean b = containsDuplicate(new int[] { 1, 5, -2, -4, 0 });
+    }
 
+    @Test
+    public void testIntersect() {
+        System.out.println(Arrays.toString(intersect(new int[] { 1, 2, 2, 1}, new int[] { 2,2 })));
+        System.out.println(Arrays.toString(intersect(new int[] { 4,9,5}, new int[] { 9,4,9,8,4 })));
     }
 }
