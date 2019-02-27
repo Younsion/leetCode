@@ -274,4 +274,53 @@ public class Solution {
         return null;
     }
 
+    /**
+     * 有效的数独
+     *
+     * 判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
+     * 1.数字 1-9 在每一行只能出现一次。
+     * 2.数字 1-9 在每一列只能出现一次。
+     * 3.数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+     * @param board
+     * @return
+     */
+    public boolean isValidSudoku(char[][] board) {
+        boolean[][] rowFlag = new boolean[9][9];
+        boolean[][] colFlag = new boolean[9][9];
+        boolean[][] boxFlag = new boolean[9][9];
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                int val = changeCharToInt(board[i][j]);
+                int boxIndex = boxIndex(i, j);
+                if (val != -1) {
+                    if (rowFlag[i][val]) {
+                        return false;
+                    }
+                    if (colFlag[j][val] || boxFlag[boxIndex][val]) {
+                        return false;
+                    }
+                    rowFlag[i][val] = true;
+                    colFlag[j][val] = true;
+                    boxFlag[boxIndex][val] = true;
+                }
+            }
+        }
+        return true;
+    }
+
+    private int changeCharToInt(char c) {
+        if ('.' == c) {
+            return -1;
+        } else {
+            return c - '1';
+        }
+    }
+
+    private int boxIndex(int i, int j) {
+        int row = i > 2 ? i > 5 ? 2 : 1 : 0;
+        int col = j > 2 ? j > 5 ? 2 : 1 : 0;
+        return row * 3 + col;
+    }
+
 }
