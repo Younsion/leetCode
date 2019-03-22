@@ -76,4 +76,14 @@ public class SolutionTest extends Solution {
         System.out.println(Arrays.toString(intersect(new int[] { 1, 2, 2, 1}, new int[] { 2,2 })));
         System.out.println(Arrays.toString(intersect(new int[] { 4,9,5}, new int[] { 9,4,9,8,4 })));
     }
+
+    @Test
+    public void testRotate90() {
+        int[][] ints = new int[][]{{5, 1, 9,11},{2, 4, 8,10},{13, 3, 6, 7},{15,14,12,16}};
+        rotate(ints);
+        for (int[] tt : ints) {
+            System.out.println(Arrays.toString(tt));
+        }
+    }
+
 }

@@ -323,4 +323,48 @@ public class Solution {
         return row * 3 + col;
     }
 
+    /**
+     * 旋转图像
+     *
+     * 给定一个 n × n 的二维矩阵表示一个图像。
+     * 将图像顺时针旋转 90 度。
+     * @param matrix
+     */
+    public void rotate(int[][] matrix) {
+        //根据框来旋转，所以首先判断需要转几个框，再分别转。
+        if (matrix == null || matrix.length == 1) {
+            return;
+        }
+        int startRow = 0;
+        int endRow = matrix.length - 1;
+        int frameIndex = 0;
+        while (startRow < endRow) {
+            if (startRow + 1 == endRow) {
+                int temp1 = matrix[startRow][endRow];
+                matrix[startRow][endRow] = matrix[startRow][startRow];
+                int temp2 = matrix[endRow][endRow];
+                matrix[endRow][endRow]=temp1;
+                temp1 = matrix[endRow][startRow];
+                matrix[endRow][startRow] = temp2;
+                matrix[startRow][startRow] = temp1;
+            } else {
+                for (int i = startRow; i < endRow; i++) {
+                    //第一行->最后一列
+                    int temp11 = matrix[i][endRow];
+                    matrix[i][endRow] = matrix[startRow][i];
+                    //最后一列->最后一行
+                    int temp22 = matrix[endRow][endRow - i];
+                    matrix[endRow][endRow - i] = temp11;
+                    //最后一行->第一列
+                    temp11 = matrix[endRow - i][startRow];
+                    matrix[endRow - i][startRow] = temp22;
+                    //第一列->第一行
+                    matrix[startRow][i] = temp11;
+                }
+            }
+            startRow++;
+            endRow--;
+        }
+    }
+
 }
