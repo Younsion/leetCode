@@ -12,4 +12,9 @@ public class SolutionTest extends Solution{
         int x = -2147483648;
         reverse(x);
     }
+
+    @Test
+    public void testIsPalindrome() {
+        isPalindrome("0P");
+    }
 }
