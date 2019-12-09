@@ -15,4 +15,9 @@ public class SolutionTest extends Solution{
         merge(nums1, 3, nums2, nums2.length);
         System.out.println(Arrays.toString(nums1));
     }
+
+    @Test
+    public void firstBadVersion() {
+        System.out.println(firstBadVersion(5));
+    }
 }
